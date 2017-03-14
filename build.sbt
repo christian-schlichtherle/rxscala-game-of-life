@@ -9,7 +9,7 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.1" % Test
 )
 
-name := "rx-game-of-life"
+name := "rxscala-game-of-life"
 
 scalacOptions := Seq("-deprecation", "-feature", "-Xfuture")
 
