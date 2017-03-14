@@ -44,7 +44,7 @@ case class ConsoleGame(rows: Int, columns: Int) extends Game {
   }
 }
 
-private object ConsoleGame {
+object ConsoleGame {
 
   private val generationFormats = {
     Stream(
