@@ -11,12 +11,8 @@ trait Game extends Grid {
 
   import Game._
 
-  def iterate(start: Board): Iterable[Board] = {
-    Iterator.iterate(start)(_.next).toIterable
-  }
-
   /** Returns an observable which emits the given board and its successors while responding to backpressure. */
-  def observe(start: Board): Observable[Board] = {
+  def observable(start: Board): Observable[Board] = {
     Observable create SyncOnSubscribe.stateful(() => start)(board => Notification.OnNext(board) -> board.next)
   }
 
