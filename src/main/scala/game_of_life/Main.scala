@@ -24,8 +24,8 @@ object Main extends App {
   }
   val setup: SetupPredicate = {
     args drop 3 match {
-      case Array() => Game.randomInit
-      case Array(word) if word equalsIgnoreCase "blinkers" => ($r, $c) => $r % 4 == 1 && $c % 4 < 3
+      case Array() => Game.random
+      case Array(word) if word equalsIgnoreCase "blinkers" => Game.blinkers
       case array => eval("($r: Int, $c: Int) => { " + (array mkString " ") + " }: Boolean")
     }
   }

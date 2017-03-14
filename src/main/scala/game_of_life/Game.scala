@@ -11,6 +11,10 @@ trait Game extends Grid {
 
   import Game._
 
+  def iterate(start: Board): Iterable[Board] = {
+    Iterator.iterate(start)(_.next).toIterable
+  }
+
   /** Returns an observable which emits the given board and its successors while responding to backpressure. */
   def observe(start: Board): Observable[Board] = {
     Observable create SyncOnSubscribe.stateful(() => start)(board => Notification.OnNext(board) -> board.next)
@@ -35,7 +39,7 @@ trait Game extends Grid {
 
   object Board {
 
-    def apply(setup: SetupPredicate = randomInit): Board = {
+    def apply(setup: SetupPredicate = random): Board = {
       apply(position => setup(position.row, position.column))
     }
 
@@ -52,5 +56,7 @@ object Game {
 
   type SetupPredicate = (Int, Int) => Boolean
 
-  def randomInit(row: Int, column: Int): Boolean = ThreadLocalRandom.current nextBoolean ()
+  def random(row: Int, column: Int): Boolean = ThreadLocalRandom.current nextBoolean ()
+
+  def blinkers(row: Int, column: Int): Boolean = row % 4 == 1 && column % 4 < 3
 }
