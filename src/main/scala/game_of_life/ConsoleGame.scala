@@ -2,8 +2,6 @@ package game_of_life
 
 import game_of_life.ConsoleGame._
 
-import scala.collection.mutable
-
 case class ConsoleGame(rows: Int, columns: Int) extends Game {
 
   require(rows >= 2)
@@ -14,7 +12,7 @@ case class ConsoleGame(rows: Int, columns: Int) extends Game {
     val allRows = 0 until rows
     val allColumns = 0 until columns
     val stringLength = (rows + 2) * (columns + 3)
-    val stringBuilder = new mutable.StringBuilder(stringLength)
+    val stringBuilder = new StringBuilder(stringLength)
 
     { board =>
       import board._
